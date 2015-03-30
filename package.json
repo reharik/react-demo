@@ -1,0 +1,21 @@
+{
+  "name": "customComponents",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "babelify": "^5.0.4",
+    "browserify": "^9.0.3",
+    "lodash": "^3.6.0",
+    "react": "^0.13.1",
+    "watchify": "^2.6.2"
+  },
+  "devDependencies": {
+    "react-bootstrap": "^0.19.1"
+  },
+  "scripts": {
+    "watch": "watchify -t babelify ./src/app.jsx -o ./dist/bundle.js -v"
+  },
+  "author": "",
+  "license": "ISC"
+}
