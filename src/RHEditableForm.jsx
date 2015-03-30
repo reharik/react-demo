@@ -11,13 +11,7 @@ var RHEditableForm = React.createClass({
     },
     handleClick(event){
         event.preventDefault();
-        var refs = this.refs;
-        if(event.currentTarget.name === "ok") {
-            var isValid = _.all(this.props.children, function (item) {
-                return !refs[item.ref].isValid || refs[item.ref].isValid()
-            }.bind(this)).bind(this);
-        }
-        this.props.onIsEditingChange(event.currentTarget.name, isValid);
+        this.props.onIsEditingChange(event.currentTarget.name);
     },
     render: function () {
         if(this.props.isEditing){

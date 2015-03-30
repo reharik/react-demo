@@ -15,8 +15,8 @@ var App = React.createClass({
         };
     },
 
-    onIsEditingChange:function(button, isValid){
-        if(button === 'ok' && isValid)
+    onIsEditingChange:function(button){
+        if(button === 'ok')
         {
             // all this will actually be values collected and sent to an action in flux
             this.setState({"firstName": this.refs.firstName.getValue()});
