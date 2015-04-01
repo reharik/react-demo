@@ -1,8 +1,6 @@
 var React = require("react");
-var bs = require("react-bootstrap");
-var RHEditableElement = require("./RHEditableElement.jsx");
-var RHEditableForm = require("./RHEditableForm.jsx");
-var validators = require("./validatorEnum.js");
+var Html = require('./Html');
+
 
 var App = React.createClass({
 
@@ -10,35 +8,39 @@ var App = React.createClass({
     getInitialState: function() {
         return {
             "firstName":"",
-            "lastName":"",
-            "isEditing":false
+            "lastName":""
         };
     },
 
-    onIsEditingChange:function(button){
-        if(button === 'ok')
-        {
-            // all this will actually be values collected and sent to an action in flux
-            this.setState({"firstName": this.refs.firstName.getValue()});
-            this.setState({"lastName": this.refs.lastName.getValue()});
-            this.setState({"isEditing":false});
-        }else if(button === 'cancel'){
-            this.setState({"isEditing":false});
-        }else{
-            this.setState({"isEditing":true});
-        }
+    handleChangeFirstName: function(){
+        this.setState({firstName: event.target.value});
     },
+
+    handleChangeLastName: function(){
+        this.setState({lastName: event.target.value});
+    },
+
     render: function() {
-        return (<bs.Grid>
-            <bs.Row className='show-grid'>
-                <bs.Col md={8}>
-                    <RHEditableForm isEditing={this.state.isEditing} onIsEditingChange={this.onIsEditingChange} >
-                        <RHEditableElement name='firstName' ref="firstName" value={this.state.firstName} isEditing={this.state.isEditing} validators={[validators.REQUIRED]}  />
-                        <RHEditableElement name='lastName' ref="lastName" value={this.state.lastName} isEditing={this.state.isEditing}  />
-                    </RHEditableForm >
-                </bs.Col>
-            </bs.Row>
-        </bs.Grid> );
+        return (<Html.Grid>
+            <Html.Row className='show-grid'>
+                <Html.Col md={8}>
+                        <Html.Well>
+                            <Html.Input type='text'
+                                label='First Name'
+                                placeholder='First Name'
+                                value={this.state.firstName}
+                                onChange={this.handleChangeFirstName} />
+                            <Html.Input type='text'
+                                label='Last Name'
+                                placeholder='Last Name'
+                                value={this.state.lastName}
+                                onChange={this.handleChangeLastName} />
+                            <Html.Button bsStyle='success' name="ok" onClick={this.handleClick}>Ok</Html.Button>
+                            <Html.Button bsStyle='danger' name="cancel" onClick={this.handleClick}>X</Html.Button>
+                        </Html.Well>
+                </Html.Col>
+            </Html.Row>
+        </Html.Grid> );
     }
 });
 
