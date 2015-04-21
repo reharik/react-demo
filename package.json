@@ -14,7 +14,8 @@
     "react-bootstrap": "^0.19.1"
   },
   "scripts": {
-    "watch": "watchify -t babelify ./src/app.jsx -o ./dist/bundle.js -v"
+    "build": "browserify --debug -t babelify ./src/app.jsx > ./dist/bundle.js",
+    "watch": "watchify --debug -t babelify ./src/app.jsx -o ./dist/bundle.js -v"
   },
   "author": "",
   "license": "ISC"
